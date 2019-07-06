@@ -1,28 +1,39 @@
 import VueRouter from 'vue-router'
 
 import {
+    ComponentPlayground,
     Login,
     Options,
     Orders,
     Stock
 } from './views'
 
-const routes = [
+export const routes = [
     {
         component: Login,
-        path: '/'
+        path: '/',
+        title: 'Login'
     },
     {
         component: Options,
-        path: '/options'
+        path: '/options',
+        title: 'Options'
     },
     {
         component: Orders,
-        path: '/orders'
+        path: '/orders',
+        title: 'Orders'
     },
     {
         component: Stock,
-        path: '/stock'
+        path: '/stock',
+        title: 'Stock'
+    },
+    // TESTING ONLY
+    {
+        component: ComponentPlayground,
+        path: '/component-playground',
+        title: 'Component Playground'
     },
 ]
 

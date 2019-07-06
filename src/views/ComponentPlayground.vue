@@ -3,8 +3,8 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout column align-center justify-center>
-                    <h1>Myx</h1>
-                    <EnterStallCode />
+                    <h1>Component Playground!</h1>
+                    <Component />
                 </v-layout>
             </v-container>
         </v-content>
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-    import EnterStallCode from './EnterStallCodeForm';
+    import BtnPrimary from '@/components/BtnPrimary';
 
     export default {
         components: {
-            EnterStallCode
+            Component: BtnPrimary
         }
     }
 

@@ -1,11 +1,26 @@
 <template>
     <div id="app">
         <nav>
-            <router-link to='/'>Login</router-link>
-            <router-link to='/options'>Options</router-link>
-            <router-link to='/orders'>Orders</router-link>
-            <router-link to='/stock'>Stock</router-link>
+            <router-link
+                    v-for="route in routes"
+                    v-bind:to="route.path"
+            >
+                {{ route.title }}
+            </router-link>
         </nav>
         <router-view />
     </div>
 </template>
+
+<script>
+    import { routes } from '@/router'
+    console.log(routes)
+
+    export default {
+        data: function() {
+            return {
+                routes
+            }
+        }
+    }
+</script>
