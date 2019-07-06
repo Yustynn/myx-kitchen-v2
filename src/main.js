@@ -9,7 +9,12 @@ import router from './router'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#1565C0',
+    secondary: '#414141'
+  }
+})
 
 new Vue({
   router,

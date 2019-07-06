@@ -1,7 +1,7 @@
-import Login from './Login.vue';
-import Options from './Options.vue'
-import Orders from './Orders.vue'
-import Stock from './Stock.vue'
+import Login from './Login';
+import Options from './Options'
+import Orders from './Orders'
+import Stock from './Stock'
 
 export {
     Login,
