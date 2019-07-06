@@ -3,7 +3,7 @@
     category: 'Spaghetti',
     items: [
         {
-            itemNo: 1,
+            itemNum: 1,
             name: 'Ribeye Steak (wtf kd how is this spag?)',
             inStock: true
         }
@@ -11,6 +11,8 @@
 }
 */
 
+const MIN_PRICE = 1
+const MAX_PRICE = 15
 const NUM_ITEMS_PER_CATEGORY = 8
 const IN_STOCK_PROBABILITY = 0.7
 
@@ -18,7 +20,6 @@ const CATEGORIES = [
     'Spaghetti',
     'Oreos',
     'Pizza',
-    'Prata',
     'Kady cookin',
     'Food',
     'Sushi'
@@ -33,7 +34,11 @@ const FOOD_BASE_NAMES = [
     'gabriel',
     'rice',
     'kopi c',
-    'gong cha'
+    'gong cha',
+    'nasi lemak',
+    'ban mian',
+    'chicken chop',
+    'fried rice',
 ]
 
 const PREFIX_MODIFIERS = [
@@ -44,7 +49,8 @@ const PREFIX_MODIFIERS = [
     'Above average',
     'Delicious',
     'Food-like',
-    'Nearly edible'
+    'Nearly edible',
+    'Yos-approved'
 ]
 const POSTFIX_MODIFIERS = [
     'of healing',
@@ -55,7 +61,8 @@ const POSTFIX_MODIFIERS = [
     'with mayo',
     'by design',
     'lassi',
-    'with the blood of children'
+    'that only zoos likes',
+    '(to save the environment)'
 ]
 
 const choice = (arr) => {
@@ -68,14 +75,16 @@ const genName = () => [PREFIX_MODIFIERS, FOOD_BASE_NAMES, POSTFIX_MODIFIERS]
     .map(choice)
     .join(' ')
 
-let itemNo = 0
+const genPrice = () => Math.max(MIN_PRICE, Math.random() * MAX_PRICE).toFixed(2)
+
+let itemNum = 0
 const data = []
 
 for (let category of CATEGORIES) {
     const items = []
     for (let i = 0; i < NUM_ITEMS_PER_CATEGORY; i++) {
         items.push({
-            itemNo: ++itemNo,
+            itemNum: ++itemNum,
             name: genName(),
             inStock: Math.random() < IN_STOCK_PROBABILITY
         })
