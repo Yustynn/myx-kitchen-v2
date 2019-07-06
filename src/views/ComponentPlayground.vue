@@ -4,7 +4,7 @@
             <v-container fluid fill-height>
                 <v-layout column align-center justify-center>
                     <h1>Component Playground!</h1>
-                    <Component />
+                    <BtnSecondary>stuff</BtnSecondary>
                 </v-layout>
             </v-container>
         </v-content>
@@ -12,12 +12,10 @@
 </template>
 
 <script>
-    import BtnPrimary from '@/components/BtnPrimary';
+    import * as components from '@/components/';
 
     export default {
-        components: {
-            Component: BtnPrimary
-        }
+        components: components
     }
 
 </script>

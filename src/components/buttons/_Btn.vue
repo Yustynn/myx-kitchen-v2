@@ -1,10 +1,10 @@
 <template>
     <v-btn
-            color="primary"
             class="btn"
             @click="onclick"
+            v-bind:color="color"
     >
-        {{ text }}
+        <slot>All praise Corinna</slot>
 
         </v-btn>
 </template>
@@ -12,14 +12,14 @@
 <script>
     export default {
         props: {
-            onclick: Function,
-            text: String
+            color: String,
+            onclick: Function
         }
     }
 </script>
 
 <style scoped>
     .btn {
-
+        font-weight: 300;
     }
 </style>
