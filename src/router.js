@@ -12,22 +12,22 @@ export const routes = [
     {
         component: Login,
         path: '/',
-        title: 'Login'
+        title: 'login'
     },
     {
         component: Options,
         path: '/options',
-        title: 'Options'
+        title: 'options'
     },
     {
         component: Orders,
         path: '/orders',
-        title: 'Orders'
+        title: 'orders'
     },
     {
         component: Stock,
         path: '/stock',
-        title: 'Stock'
+        title: 'stock'
     },
     // TESTING ONLY
     {

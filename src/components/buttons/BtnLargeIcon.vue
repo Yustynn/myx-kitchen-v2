@@ -1,20 +1,23 @@
 <template>
-    <v-layout
-            column
-            class="container"
-            justify-center
-    >
-        <v-img
-                class="image"
-                contain
-                max-height="150"
-                v-bind:src="iconSrc"
-        />
-        <h3 class="text">{{text}}</h3>
-    </v-layout>
+    <router-link :to="to">
+        <v-layout
+                column
+                class="container"
+                justify-center
+        >
+            <v-img
+                    class="image"
+                    contain
+                    max-height="150"
+                    v-bind:src="iconSrc"
+            />
+            <h3 class="text">{{text}}</h3>
+        </v-layout>
+    </router-link>
 </template>
 
 <script>
+    import { routes } from '@/router'
     export default {
         computed: {
             iconSrc: function() {
@@ -24,9 +27,12 @@
         props: {
             icon: {
                 type: String,
-                validator: (icon) => ['logout', 'options', 'order', 'stock'].includes(icon)
+                validator: (icon) => ['logout', 'options', 'orders', 'stock'].includes(icon)
             },
-            onclick: Function,
+            to: {
+                type: String,
+                validator: (title) => routes.map((r) => r.title).includes(title)
+            },
             text: {
                 type: String,
                 default: 'All praise Corinna'

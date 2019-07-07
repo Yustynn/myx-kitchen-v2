@@ -18,7 +18,7 @@
         props: {
             icon: {
                 type: String,
-                validator: (icon) => ['logout', 'options', 'order', 'stock'].includes(icon)
+                validator: (icon) => ['logout', 'options', 'orders', 'stock'].includes(icon)
             },
             onclick: Function,
             text: {
