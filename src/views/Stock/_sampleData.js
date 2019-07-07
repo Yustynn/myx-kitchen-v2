@@ -75,7 +75,13 @@ const genName = () => [PREFIX_MODIFIERS, FOOD_BASE_NAMES, POSTFIX_MODIFIERS]
     .map(choice)
     .join(' ')
 
-const genPrice = () => Math.max(MIN_PRICE, Math.random() * MAX_PRICE).toFixed(2)
+const genPrice = () => {
+    const { max, random } = Math
+    const randomPrice = +(MAX_PRICE/10 * random()).toFixed(2) * 10
+    const lowerBounded = max(MIN_PRICE, randomPrice)
+
+    return lowerBounded.toFixed(2)
+}
 
 let itemNum = 0
 const data = []
@@ -86,7 +92,8 @@ for (let category of CATEGORIES) {
         items.push({
             itemNum: ++itemNum,
             name: genName(),
-            inStock: Math.random() < IN_STOCK_PROBABILITY
+            inStock: Math.random() < IN_STOCK_PROBABILITY,
+            price: genPrice()
         })
     }
 

@@ -21,8 +21,8 @@
                     <template v-slot:items="props">
                         <tr @click="rowOnClickHandler(props.item)">
                             <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.itemNum }}.</td>
-                            <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.name }}.</td>
-                            <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.price }}.</td>
+                            <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.name }}</td>
+                            <td :class="props.item.inStock ? '' : 'no-stock'">${{ props.item.price }}</td>
                             <td>
                                 <v-flex row>
                                     <span>
