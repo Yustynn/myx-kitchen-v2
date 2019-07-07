@@ -1,5 +1,5 @@
 <template>
-    <router-link :to="to">
+    <router-link :to="{ name: to }">
         <v-layout
                 column
                 class="container"

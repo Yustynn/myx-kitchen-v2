@@ -1,14 +1,17 @@
 <template>
-    <v-img
-            @click="onclick"
-            class="container"
-            contain
-            height="50"
-            v-bind:src="iconSrc"
-    />
+    <router-link :to="{ name: to }">
+        <v-img
+                class="container"
+                contain
+                height="10"
+                v-bind:src="iconSrc"
+        />
+    </router-link>
 </template>
 
 <script>
+    import { routes } from '@/router'
+
     export default {
         computed: {
             iconSrc: function() {
@@ -20,10 +23,13 @@
                 type: String,
                 validator: (icon) => ['logout', 'options', 'orders', 'stock'].includes(icon)
             },
-            onclick: Function,
             text: {
                 type: String,
                 default: 'All praise Corinna'
+            },
+            to: {
+                type: String,
+                validator: (name) => routes.map((r) => r.name).includes(name)
             }
         }
     }

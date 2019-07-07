@@ -1,5 +1,6 @@
 <template>
     <v-layout column>
+        <Header />
         <h1>Stock</h1>
         <v-text-field
                         full-width
@@ -14,11 +15,13 @@
 
 <script>
     import StockTable from './StockTable'
+    import { Header } from '@/components'
 
     import sampleData from './_sampleData'
 
     export default {
         components: {
+            Header,
             StockTable
         },
         computed: {

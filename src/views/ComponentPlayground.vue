@@ -4,9 +4,8 @@
             <v-container fluid fill-height>
                 <v-layout column align-center justify-center>
                     <h1>Component Playground!</h1>
-                    <v-flex>
-                        <OrderInfo></OrderInfo>
-                        <StockTable :data="stockTableData"></StockTable>
+                    <v-flex class="component-container""">
+                        <Header />
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -41,3 +40,10 @@
     }
 
 </script>
+
+<style scoped>
+    .component-container {
+        border: 1px solid grey;
+        width: 100%;
+    }
+</style>
