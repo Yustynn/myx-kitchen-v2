@@ -1,7 +1,7 @@
 <template>
-    <v-layout class="container">
-        <v-flex xs2>{{ itemNum }}.</v-flex>
-        <v-flex xs8 column>
+    <v-layout fill-width class="container">
+        <v-flex sm1 xs3>{{ itemNum }}.</v-flex>
+        <v-flex sm9 xs6 column>
             <h3>{{ name }}</h3>
             <p
                    class="special-requests"
@@ -18,7 +18,7 @@
                 No special requests
             </p>
         </v-flex>
-        <v-flex xs2>
+        <v-flex sm2 xs3>
             <p class="quantity">x{{ quantity }}</p>
             <p v-if="showPrice">${{ price }}</p>
         </v-flex>
@@ -46,8 +46,7 @@
             },
             showPrice: {
                 type: Boolean,
-                // default: false
-                default: true
+                default: false
             },
             specialRequests: {
                 type: Array,
@@ -63,7 +62,7 @@
 
 <style scoped>
     .container {
-        width: 350px;
+        padding: 100px;
     }
 
     .quantity {

@@ -8,7 +8,10 @@
                 {{ route.title }}
             </router-link>
         </nav>
-        <router-view />
+        <v-layout column fill-height fill-width>
+            <router-view />
+
+        </v-layout>
     </div>
 </template>
 
@@ -24,3 +27,18 @@
         }
     }
 </script>
+
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+</style>
