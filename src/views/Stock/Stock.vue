@@ -1,3 +1,54 @@
 <template>
-    <h1>Stock</h1>
+    <v-layout column>
+        <h1>Stock</h1>
+        <v-text-field
+                        full-width
+                        solo
+                        v-model="searchTerm"
+                        append-icon="search"
+                        placeholder="Search for menu item by name or tag"
+                ></v-text-field>
+        <StockTable :data="processedData" />
+    </v-layout>
 </template>
+
+<script>
+    import StockTable from './StockTable'
+
+    import sampleData from './_sampleData'
+
+    export default {
+        components: {
+            StockTable
+        },
+        computed: {
+          processedData() {
+              const { data, searchTerm } = this;
+
+              if (searchTerm === '') return data;
+
+              const isMatch = (item) => {
+                  const isNameMatch = item.name.toLowerCase().includes( searchTerm.toLowerCase() )
+                  const isNumMatch = item.itemNum.toString().startsWith( searchTerm  )
+
+                  return isNameMatch || isNumMatch
+              }
+
+              // can optimize here by looping once instead of twice, but I don't think it's necessary
+              const validCategoriesInfo = data.filter( (ci) => ci.items.some(isMatch) )
+              return validCategoriesInfo.map( (ci) => ({...ci, items: ci.items.filter(isMatch)}) )
+          }
+        },
+        data() {
+          return {
+              searchTerm: ''
+          }
+        },
+        props: {
+            data: {
+                type: Array,
+                default: () => ([...sampleData])
+            }
+        }
+    }
+</script>

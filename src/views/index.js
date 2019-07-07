@@ -1,7 +1,7 @@
 import ComponentPlayground from './ComponentPlayground';
 import Login from './Login';
 import Options from './Options'
-import Orders from './Orders'
+import Orders from './Orders/Orders'
 import Stock from './Stock/Stock'
 
 export {

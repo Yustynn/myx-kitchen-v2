@@ -1,6 +1,5 @@
 <template>
-    <div>
-        <div class="text-xs-center mb-3">{{ panel }}</div>
+    <div class="container">
         <v-expansion-panel
                 v-model="panel"
                 expand
@@ -80,5 +79,9 @@
     .no-stock {
         color: #C5C5C5;
         text-decoration: line-through;
+    }
+    
+    .container {
+        cursor: pointer;
     }
 </style>
