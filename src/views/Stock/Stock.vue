@@ -32,7 +32,7 @@
 
               const isMatch = (item) => {
                   const isNameMatch = item.name.toLowerCase().includes( searchTerm.toLowerCase() )
-                  const isNumMatch = item.itemNum.toString().startsWith( searchTerm  )
+                  const isNumMatch = item.itemNum.toString() === searchTerm
 
                   return isNameMatch || isNumMatch
               }
