@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <v-container>
         <nav>
             <router-link
                     v-for="route in routes"
@@ -12,7 +12,7 @@
             <router-view />
 
         </v-layout>
-    </div>
+    </v-container>
 </template>
 
 <script>
@@ -52,6 +52,13 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         font-family: Noah;
+    }
+
+    h1 {
+        color: #414141;
+        font-family: Arciform;
+        font-size: 48px;
+        font-weight: 400;
     }
 
     html, body {

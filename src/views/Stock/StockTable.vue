@@ -3,10 +3,12 @@
         <v-expansion-panel
                 v-model="panel"
                 expand
+                class="expansion-panels-container"
         >
             <v-expansion-panel-content
                     v-for="(categoryInfo, idx) in data"
                     :key="idx"
+                    class="expansion-panel-item"
             >
                 <template v-slot:header>
                     <div>{{ categoryInfo.category }}</div>
@@ -14,13 +16,12 @@
                 <v-data-table
                         :items="categoryInfo.items"
                         :headers="headers"
-                        class="elevation-1"
                         hide-actions
                         hide-headers
                 >
                     <template v-slot:items="props">
-                        <tr @click="rowOnClickHandler(props.item)">
-                            <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.itemNum }}.</td>
+                        <tr style="margin: 0 200px !important;" @click="rowOnClickHandler(props.item)">
+                            <td class="test" :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.itemNum }}.</td>
                             <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.name }}</td>
                             <td :class="props.item.inStock ? '' : 'no-stock'">${{ props.item.price }}</td>
                             <td>
@@ -76,12 +77,30 @@
 </script>
 
 <style scoped>
+    td {
+        text-transform: none;
+    }
+
+    .container {
+        cursor: pointer;
+    }
+
+    .expansion-panel-item {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .expansion-panels-container {
+        box-shadow: none;
+    }
+
     .no-stock {
         color: #C5C5C5;
         text-decoration: line-through;
     }
     
-    .container {
-        cursor: pointer;
+    .test {
+        margin-left: 30px !important;
     }
 </style>

@@ -1,15 +1,16 @@
 <template>
     <v-layout column>
         <Header />
-        <h1>Stock</h1>
-        <v-text-field
-                full-width
-                solo
-                v-model="searchTerm"
-                append-icon="search"
-                placeholder="Search for menu item by name or tag"
-        ></v-text-field>
-        <StockTable :data="processedData" />
+        <v-container>
+            <h1 class="text-xs-center">Stock</h1>
+            <v-text-field
+                    v-model="searchTerm"
+                    append-icon="search"
+                    placeholder="Search for menu item by name or tag"
+            ></v-text-field>
+            <StockTable class='stock-table' :data="processedData" />
+
+        </v-container>
     </v-layout>
 </template>
 
@@ -55,3 +56,11 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    .stock-table {
+        border: 3px solid #1565C0;
+        height: 350px;
+        overflow-y: scroll;
+    }
+</style>
