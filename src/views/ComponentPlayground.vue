@@ -5,7 +5,7 @@
                 <v-layout column align-center justify-center>
                     <h1>Component Playground!</h1>
                     <v-flex class="component-container""">
-                        <EnterStallCodeForm />
+                        <Logo />
                     </v-flex>
                 </v-layout>
             </v-container>

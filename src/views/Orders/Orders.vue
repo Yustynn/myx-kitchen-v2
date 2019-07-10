@@ -49,6 +49,6 @@
     }
 
     .unconfirmed-orders {
-        background-color: #aaa;
+        background-color: #ECEDEF;
     }
 </style>

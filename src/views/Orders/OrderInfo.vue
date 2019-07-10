@@ -1,8 +1,8 @@
 <template>
-    <v-layout fill-width class="container">
+    <v-layout fill-width class="px-3 py-2">
         <v-flex sm1 xs3>{{ itemNum }}.</v-flex>
         <v-flex sm9 xs6 column>
-            <h3>{{ name }}</h3>
+            <h3 class="pb-1">{{ name }}</h3>
             <p
                    class="special-requests"
                     v-for="(specialRequest, idx) in specialRequests"
@@ -61,13 +61,18 @@
 </script>
 
 <style scoped>
+    h3 {
+        color: black;
+    }
+
     .container {
         padding: 100px;
     }
 
     .quantity {
         border-radius: 50%;
-        border: 1px solid black;
+        border: 1px solid #979797;
+        font-weight: 700;
         height: 30px;
         line-height: 30px;
         text-align: center;
