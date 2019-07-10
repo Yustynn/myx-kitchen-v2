@@ -28,7 +28,10 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+    $PRIMARY: '#1565C0';
+    $SECONDARY: '#CFCFCF';
+
     @font-face {
         font-family: "Arciform";
         src: url("/fonts/Arciform.otf");

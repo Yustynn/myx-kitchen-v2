@@ -42,11 +42,23 @@
 </script>
 
 <style scoped>
+    h3 {
+        color: black;
+        font-size: 36px;
+        font-weight: 300;
+        text-decoration: none !important;
+        text-decoration-style: double;
+    }
+    
+    h3:visited {
+        text-decoration: none;
+    }
+
     .container {
         border: 3px solid #1565C0;
         cursor: pointer;
-        height: 300px;
-        opacity: 0.5;
+        height: 280px;
+        opacity: 0.4;
         width: 240px;
 
         -webkit-user-select: none;

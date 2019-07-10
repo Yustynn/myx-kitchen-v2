@@ -1,29 +1,25 @@
 <template>
-    <v-form
-            ref="form"
-            class="form"
-    >
-        <v-layout column center align-center>
-            <v-flex xs12 md8>
-                <v-text-field
-                        full-width
-                        outline
-                        solo
-                        v-model="password"
-                        :append-icon="passwordFieldVisibilityIcon"
-                        :type="passwordFieldType"
-                        @click:append="togglePasswordVisibility"
-                ></v-text-field>
-            </v-flex>
+        <v-form
+                ref="form"
+                class="form text-xs-center"
+        >
+            <v-text-field
+                    full-width
+                    outline
+                    solo
+                    v-model="password"
+                    :append-icon="passwordFieldVisibilityIcon"
+                    :type="passwordFieldType"
+                    @click:append="togglePasswordVisibility"
+            ></v-text-field>
 
-                <v-btn
-                        color="primary"
-                        :to="{ name: 'options' }"
-                >
-                    Login
-                </v-btn>
-        </v-layout>
-    </v-form>
+            <v-btn
+                    color="primary"
+                    :to="{ name: 'options' }"
+            >
+                Login
+            </v-btn>
+        </v-form>
 </template>
 
 <script>
@@ -52,7 +48,6 @@
 
 <style scoped>
     .form {
-        width: 100%;
     }
 
 </style>

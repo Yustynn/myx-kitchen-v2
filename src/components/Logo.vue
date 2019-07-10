@@ -4,9 +4,10 @@
 
 <style scoped>
     h1 {
+        color: #414141;
         font-family: Arciform;
         font-size: 48px;
-        text-transform: lowercase;
         font-weight: 400;
+        text-transform: lowercase;
     }
 </style>

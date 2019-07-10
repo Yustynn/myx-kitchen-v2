@@ -1,21 +1,32 @@
 <template>
     <v-layout column>
         <Header no-options />
-        <h1>Options</h1>
+        <Logo class="text-xs-center mb-4" />
         <v-layout row wrap fill-width align-center justify-center>
-            <BtnLargeIcon icon="stock" text="Stock" to="stock"/>
-            <BtnLargeIcon icon="orders" text="Orders" to="orders"/>
+            <BtnLargeIcon
+                    class="mx-3"
+                    icon="stock"
+                    text="Stock"
+                    to="stock"
+            />
+            <BtnLargeIcon
+                    class="mx-3"
+                    icon="orders"
+                    text="Orders"
+                    to="orders"
+            />
         </v-layout>
     </v-layout>
 </template>
 
 <script>
-    import { BtnLargeIcon, Header } from '@/components'
+    import { BtnLargeIcon, Header, Logo } from '@/components'
 
     export default {
         components: {
             BtnLargeIcon,
-            Header
+            Header,
+            Logo
         }
     }
 </script>
