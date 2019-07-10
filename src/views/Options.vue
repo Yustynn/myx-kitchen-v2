@@ -1,5 +1,5 @@
 <template>
-    <v-layout column>
+    <v-container>
         <Header no-options />
         <Logo class="text-xs-center mb-4" />
         <v-layout row wrap fill-width align-center justify-center>
@@ -16,7 +16,7 @@
                     to="orders"
             />
         </v-layout>
-    </v-layout>
+    </v-container>
 </template>
 
 <script>

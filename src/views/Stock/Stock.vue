@@ -1,5 +1,5 @@
 <template>
-    <v-layout column>
+    <v-container>
         <Header />
         <v-container>
             <h1 class="text-xs-center">Stock</h1>
@@ -11,7 +11,7 @@
             <StockTable class='stock-table' :data="processedData" />
 
         </v-container>
-    </v-layout>
+    </v-container>
 </template>
 
 <script>

@@ -1,29 +1,16 @@
 <template>
-    <v-container>
-        <nav>
-            <router-link
-                    v-for="route in routes"
-                    v-bind:to="route.path"
-            >
-                {{ route.title }}
-            </router-link>
-        </nav>
-        <v-layout column fill-height fill-width>
-            <router-view />
-
-        </v-layout>
-    </v-container>
+    <v-layout column fill-height fill-width>
+        <DevMenu />
+        <router-view />
+    </v-layout>
 </template>
 
 <script>
-    import { routes } from '@/router'
-    console.log(routes)
+    import { DevMenu } from '@/components'
 
     export default {
-        data: function() {
-            return {
-                routes
-            }
+        components: {
+            DevMenu
         }
     }
 </script>
