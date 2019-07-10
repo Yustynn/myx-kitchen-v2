@@ -18,6 +18,7 @@
 
                 <v-btn
                         color="primary"
+                        :to="{ name: 'options' }"
                 >
                     Login
                 </v-btn>

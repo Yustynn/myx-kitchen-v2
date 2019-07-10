@@ -3,7 +3,7 @@
         <v-content>
             <v-container fluid fill-height>
                 <v-layout column align-center justify-center>
-                    <h1>Myx</h1>
+                    <Logo />
                     <EnterStallCode />
                 </v-layout>
             </v-container>
@@ -13,10 +13,12 @@
 
 <script>
     import EnterStallCode from './EnterStallCodeForm';
+    import { Logo } from '@/components';
 
     export default {
         components: {
-            EnterStallCode
+            EnterStallCode,
+            Logo
         }
     }
 

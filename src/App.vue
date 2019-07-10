@@ -29,10 +29,26 @@
 </script>
 
 <style>
+    @font-face {
+        font-family: "Arciform";
+        src: url("/fonts/Arciform.otf");
+    }
+
+    @font-face {
+        font-family: "Astronaut";
+        src: url("/fonts/Astronaut.otf");
+    }
+
+    @font-face {
+        font-family: "Noah";
+        src: url("/fonts/Noah.otf");
+    }
+
     * {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+        font-family: Noah;
     }
 
     html, body {
