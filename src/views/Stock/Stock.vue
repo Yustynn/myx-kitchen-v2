@@ -48,6 +48,7 @@
                 searchTerm: ''
             }
         },
+        name: 'Stock',
         props: {
             data: {
                 type: Array,

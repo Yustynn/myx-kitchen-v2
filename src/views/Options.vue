@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <Header no-options />
-        <Logo class="text-xs-center mb-4" />
+        <h1 class="pb-2 text-xs-center">myx</h1>
         <v-layout row wrap fill-width align-center justify-center>
             <BtnLargeIcon
                     class="mx-3"
@@ -20,13 +20,13 @@
 </template>
 
 <script>
-    import { BtnLargeIcon, Header, Logo } from '@/components'
+    import { BtnLargeIcon, Header } from '@/components'
 
     export default {
         components: {
             BtnLargeIcon,
             Header,
-            Logo
-        }
+        },
+        name: 'Options'
     }
 </script>

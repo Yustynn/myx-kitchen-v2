@@ -14,7 +14,8 @@
         props: {
             color: String,
             onclick: Function
-        }
+        },
+        name: '_Btn'
     }
 </script>
 

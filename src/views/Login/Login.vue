@@ -8,7 +8,7 @@
                     fill-width
                     justify-center
             >
-                <Logo />
+                <h1 class="pb-2 text-xs-center">myx</h1>
                 <EnterStallCodeForm class="form" />
             </v-layout>
         </v-content>
@@ -17,13 +17,12 @@
 
 <script>
     import EnterStallCodeForm from './EnterStallCodeForm';
-    import { Logo } from '@/components';
 
     export default {
         components: {
-            EnterStallCodeForm,
-            Logo
-        }
+            EnterStallCodeForm
+        },
+        name: 'Login'
     }
 </script>
 

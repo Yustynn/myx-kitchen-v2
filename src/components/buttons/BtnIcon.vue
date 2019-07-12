@@ -18,6 +18,7 @@
                 return `/icons/${this.icon}.svg`
             }
         },
+        name: 'BtnIcon',
         props: {
             icon: {
                 type: String,

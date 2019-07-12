@@ -35,7 +35,8 @@
         components: {
             Header,
             OrderGroup
-        }
+        },
+        name: 'Orders'
     }
 </script>
 

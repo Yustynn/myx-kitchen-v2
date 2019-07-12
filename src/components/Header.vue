@@ -15,6 +15,7 @@
         components: {
             BtnIcon
         },
+        name: 'Header',
         props: {
             noLogout: {
                 type: Boolean,

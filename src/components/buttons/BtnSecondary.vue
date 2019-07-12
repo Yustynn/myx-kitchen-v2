@@ -14,6 +14,7 @@
                 components: {
                         Btn
                 },
+                name: 'BtnSecondary',
                 props: {
                         onclick: Function
                 }

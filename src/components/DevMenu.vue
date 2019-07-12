@@ -17,6 +17,7 @@
             return {
                 routes
             }
-        }
+        },
+        name: 'DevMenu'
     }
 </script>

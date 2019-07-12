@@ -1,8 +1,10 @@
 <template>
-    <v-layout column fill-height fill-width>
-        <DevMenu />
-        <router-view />
-    </v-layout>
+    <v-app>
+        <v-layout column fill-height fill-width>
+            <DevMenu />
+            <router-view />
+        </v-layout>
+    </v-app>
 </template>
 
 <script>
@@ -11,7 +13,8 @@
     export default {
         components: {
             DevMenu
-        }
+        },
+        name: 'App'
     }
 </script>
 

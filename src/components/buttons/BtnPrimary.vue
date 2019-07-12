@@ -14,6 +14,7 @@
                 components: {
                         Btn
                 },
+                name: 'BtnPrimary',
                 props: {
                         onclick: Function
                 }
