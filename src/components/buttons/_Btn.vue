@@ -20,6 +20,7 @@
 
 <style scoped>
     .btn {
+        font-size: 18px;
         font-weight: 300;
     }
 </style>

@@ -64,4 +64,28 @@
         font-size: 18px;
     }
 
+    .color-primary {
+        color: #1565C0;
+    }
+
+    .color-bg-primary {
+        background-color: #1565C0;
+    }
+
+    .color-border-primary {
+        border-color: #1565C0;
+    }
+
+
+    .color-secondary {
+        color: #CFCFCF;
+    }
+
+    .color-bg-secondary {
+        background-color: #CFCFCF;
+    }
+
+    .color-border-secondary {
+        border-color: #CFCFCF;
+    }
 </style>
