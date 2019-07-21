@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import { routes } from '@/router'
+    import routesConfig from '@/router/routesConfig'
 
     export default {
         computed: {
@@ -30,7 +30,9 @@
             },
             to: {
                 type: String,
-                validator: (name) => routes.map((r) => r.name).includes(name)
+                validator: (name) => Object.values(routesConfig)
+                    .map((r) => r.name)
+                    .includes(name)
             }
         }
     }

@@ -7,13 +7,14 @@
                     class="mx-3"
                     icon="stock"
                     text="Stock"
-                    to="stock"
+                    :to="stockName"
             />
+
             <BtnLargeIcon
                     class="mx-3"
                     icon="orders"
                     text="Orders"
-                    to="orders"
+                    :to="ordersName"
             />
         </v-layout>
     </v-container>
@@ -21,12 +22,21 @@
 
 <script>
     import { BtnLargeIcon, Header } from '@/components'
+    import routesConfig from '@/router/routesConfig'
+
+    const { STOCK, ORDERS } = routesConfig
 
     export default {
         components: {
             BtnLargeIcon,
             Header,
         },
-        name: 'Options'
+        name: 'Options',
+        data() {
+            return {
+                stockName: STOCK.name,
+                ordersName: ORDERS.name
+            }
+        }
     }
 </script>

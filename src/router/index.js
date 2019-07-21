@@ -6,39 +6,39 @@ import {
     Options,
     Orders,
     Stock
-} from './views'
+} from '@/views'
+
+import routesConfig from './routesConfig'
+
+const {
+    COMPONENT_PLAYGROUND,
+    LOGIN,
+    OPTIONS,
+    ORDERS,
+    STOCK
+} = routesConfig;
 
 export const routes = [
     {
         component: Login,
-        path: '/',
-        name: 'login',
-        title: 'Login'
+        ...LOGIN
     },
     {
         component: Options,
-        path: '/options',
-        name: 'options',
-        title: 'Options'
+        ...OPTIONS
     },
     {
         component: Orders,
-        path: '/orders',
-        name: 'orders',
-        title: 'Orders'
+        ...ORDERS
     },
     {
         component: Stock,
-        path: '/stock',
-        name: 'stock',
-        title: 'Stock'
+        ...STOCK
     },
     // TESTING ONLY
     {
         component: ComponentPlayground,
-        path: '/component-playground',
-        name: 'componentPlayground',
-        title: 'Component Playground'
+        ...COMPONENT_PLAYGROUND
     },
 ]
 

@@ -1,8 +1,9 @@
 <template>
     <nav>
         <router-link
-                v-for="route in routes"
-                v-bind:to="route.path"
+                v-for="(route, idx) in routes"
+                :to="route.path"
+                :key="idx"
         >
             {{ route.title }}
         </router-link>
@@ -10,12 +11,12 @@
 </template>
 
 <script>
-    import { routes } from '@/router'
+    import routesConfig from '@/router/routesConfig'
 
     export default {
         data: function() {
             return {
-                routes
+                routes: Object.values(routesConfig)
             }
         },
         name: 'DevMenu'

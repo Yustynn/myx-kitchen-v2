@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import { routes } from '@/router'
+    import routesConfig from '@/router/routesConfig'
     export default {
         computed: {
             iconSrc: function() {
@@ -32,7 +32,9 @@
             },
             to: {
                 type: String,
-                validator: (title) => routes.map((r) => r.title).includes(title)
+                validator: (name) => Object.values(routesConfig)
+                    .map((r) => r.name)
+                    .includes(name)
             },
             text: {
                 type: String,
