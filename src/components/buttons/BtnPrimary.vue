@@ -1,9 +1,9 @@
 <template>
         <Btn
                 color="primary"
-                v-bind:onclick="onclick"
+                @click="$emit('click')"
         >
-                <slot></slot>
+                <slot />
         </Btn>
 </template>
 
@@ -15,9 +15,6 @@
                         Btn
                 },
                 name: 'BtnPrimary',
-                props: {
-                        onclick: Function
-                }
         }
 </script>
 

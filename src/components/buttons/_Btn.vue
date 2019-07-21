@@ -1,7 +1,7 @@
 <template>
     <v-btn
             class="btn"
-            @click="onclick"
+            @click="$emit('click')"
             v-bind:color="color"
     >
         <slot>All praise Corinna</slot>
@@ -13,9 +13,8 @@
     export default {
         props: {
             color: String,
-            onclick: Function
         },
-        name: '_Btn'
+        name: 'BaseBtn'
     }
 </script>
 

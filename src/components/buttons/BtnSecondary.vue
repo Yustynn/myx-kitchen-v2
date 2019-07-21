@@ -1,9 +1,9 @@
 <template>
         <Btn
                 color="secondary"
-                v-bind:onclick="onclick"
+                @click="$emit('click')"
         >
-                <slot style="cursor: pointer; -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;"></slot>
+                <slot />
         </Btn>
 </template>
 
@@ -14,9 +14,6 @@
                 components: {
                         Btn
                 },
-                name: 'BtnSecondary',
-                props: {
-                        onclick: Function
-                }
+                name: 'BtnSecondary'
         }
 </script>
