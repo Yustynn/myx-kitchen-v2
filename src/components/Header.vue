@@ -1,6 +1,6 @@
 <template>
     <nav class="container">
-        <v-layout row full-height justify-space-between>
+        <v-layout class="text-xs-center" row full-height justify-center>
             <v-dialog fullscreen v-model="showLogoutModal">
                 <template v-slot:activator="{ on }">
                     <BtnIcon icon="logout" @click="showLogoutModal = true" v-show="!noLogout" />
@@ -23,7 +23,7 @@
                 </v-layout>
             </v-dialog>
 
-            <h1>{{ text }}</h1>
+            <h1 class="text-xs-center">{{ text }}</h1>
 
             <BtnIcon icon="options" to="options" v-show="!noOptions" />
         </v-layout>
@@ -75,7 +75,9 @@
 
 <style scoped>
     h1 {
+        flex: 1; /* but why tho? */
         line-height: 50px;
+        text-align: center;
     }
 
     .container {
