@@ -1,5 +1,5 @@
 <template>
-    <nav>
+    <nav class="container">
         <v-layout row full-height justify-space-between>
             <v-dialog fullscreen v-model="showLogoutModal">
                 <template v-slot:activator="{ on }">
@@ -76,6 +76,10 @@
 <style scoped>
     h1 {
         line-height: 50px;
+    }
+
+    .container {
+        width: 100%;
     }
 
     .modal-content {
