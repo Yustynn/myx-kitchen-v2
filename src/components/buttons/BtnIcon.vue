@@ -4,7 +4,8 @@
                 class="container"
                 contain
                 height="10"
-                v-bind:src="iconSrc"
+                :src="iconSrc"
+                @click="$emit('click')"
         />
     </router-link>
 </template>

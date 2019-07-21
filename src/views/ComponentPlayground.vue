@@ -5,7 +5,7 @@
                 <v-layout column align-center justify-center>
                     <h1>Component Playground!</h1>
                     <v-flex class="component-container""">
-                        <Header></Header>
+                        <Header />
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -32,12 +32,12 @@
         },
         data: function() {
             return {
-                stockTableData
+                stockTableData,
             }
         },
         methods: {
-            log: function() {
-                console.log('sup')
+            clicky() {
+                console.log('clack')
             }
         }
     }

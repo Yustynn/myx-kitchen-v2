@@ -46,6 +46,13 @@
         box-sizing: border-box;
     }
 
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
     h1 {
         color: #414141;
         font-family: Arciform;
@@ -53,10 +60,8 @@
         font-weight: 400;
     }
 
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        width: 100%;
+    p {
+        font-size: 18px;
     }
+
 </style>
