@@ -41,7 +41,6 @@
     import { BtnPrimary, Header } from '@/components'
 
     import routesConfig from '@/router/routesConfig'
-    import sampleData from './_sampleData'
 
     export default {
         components: {
@@ -50,6 +49,9 @@
             StockTable
         },
         computed: {
+            data() {
+                return this.$store.state.menu.menu
+            },
             processedData() {
                 const { data, searchTerm } = this;
 
@@ -75,12 +77,6 @@
             }
         },
         name: 'Stock',
-        props: {
-            data: {
-                type: Array,
-                default: () => ([...sampleData])
-            }
-        }
     }
 </script>
 
