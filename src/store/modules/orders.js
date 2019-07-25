@@ -6,7 +6,7 @@ export default {
     },
     mutations: {
         updateOrders(state, orders) {
-            Vue.set(state, 'orders')
+            Vue.set(state, 'orders', orders)
         }
     },
     actions: {

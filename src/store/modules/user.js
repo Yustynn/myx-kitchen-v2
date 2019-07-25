@@ -29,7 +29,7 @@ export default {
 
             dispatch('disconnectSocket')
 
-            const socket = io('http://18.138.9.151:11236/');
+            const socket = io('http://10.12.254.221:11236/');
 
             socket.on('disconnect', reconnect)
             socket.emit(JOIN_STORE, storeId)
@@ -38,6 +38,7 @@ export default {
             // @TODO only do this after store room join is confirmed
             commit('setStoreId', storeId);
             commit('setSocket', socket);
+            dispatch('updateMenu')
         }
 
     }
