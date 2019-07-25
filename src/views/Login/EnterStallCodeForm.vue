@@ -15,7 +15,7 @@
 
             <v-btn
                     color="primary"
-                    :to="{ name: 'options' }"
+                    @click="login(password)"
             >
                 Login
             </v-btn>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
     export default {
         computed: {
             passwordFieldVisibilityIcon: function() {
@@ -32,16 +34,20 @@
                 return this.showPassword ? 'text' : 'password'
             }
         },
+
         data: function() {
             return {
                 password: '',
                 showPassword: false,
             }
         },
+
         methods: {
+            ...mapActions(['login']),
             togglePasswordVisibility() {
                 this.showPassword = !this.showPassword
-            }
+            },
+            print: console.log
         }
     }
 </script>

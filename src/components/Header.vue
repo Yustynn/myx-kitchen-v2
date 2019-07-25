@@ -46,13 +46,6 @@
         data() {
             return {
                 showLogoutModal: false,
-
-
-
-                dialog: false,
-                notifications: false,
-                sound: true,
-                widgets: false
             }
         },
         name: 'Header',
@@ -82,6 +75,7 @@
 
     .container {
         width: 100%;
+        margin: 0;
     }
 
     .modal-content {
@@ -91,5 +85,3 @@
         min-width: 450px;
     }
 </style>
-
-<!--<v-btn v-on="on">clickety clackety click clack cluck you sun of a duck</v-btn>-->

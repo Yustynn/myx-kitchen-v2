@@ -4,8 +4,9 @@
             <v-container fluid fill-height>
                 <v-layout column align-center justify-center>
                     <h1>Component Playground!</h1>
-                    <v-flex class="component-container""">
-                        <Header />
+                    <v-flex class="component-container pa-3 text-xs-center">
+                        <h2>BtnPrimary</h2>
+                        <BtnPrimary>Test Button</BtnPrimary>
                     </v-flex>
                 </v-layout>
             </v-container>
