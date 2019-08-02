@@ -1,7 +1,9 @@
-import Vue from 'vue'
 import io from 'socket.io-client';
 
 import { JOIN_STORE, RECEIVE_ORDERS } from "@/api/socket";
+import routesConfig from '@/router/routesConfig'
+
+const SOCKET_URL = 'http://10.12.254.221:11236/'
 
 export default {
     state: {
@@ -21,7 +23,7 @@ export default {
             if (state.socket) state.socket.disconnect()
         },
 
-        login({ commit, dispatch }, storeId) {
+        login({ commit, dispatch, rootState }, storeId) {
             const reconnect = () => {
                 dispatch('login', storeId)
             }
@@ -29,7 +31,7 @@ export default {
 
             dispatch('disconnectSocket')
 
-            const socket = io('http://10.12.254.221:11236/');
+            const socket = io(SOCKET_URL);
 
             socket.on('disconnect', reconnect)
             socket.emit(JOIN_STORE, storeId)
@@ -39,6 +41,8 @@ export default {
             commit('setStoreId', storeId);
             commit('setSocket', socket);
             dispatch('updateMenu')
+
+            rootState.router.push(routesConfig.OPTIONS)
         }
 
     }

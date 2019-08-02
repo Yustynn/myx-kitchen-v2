@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { getMenu } from '@/api/menu'
+import { getMenu, setItemStockStatus } from '@/api/menu'
 
 export default {
     state: {
@@ -11,10 +11,14 @@ export default {
         }
     },
     actions: {
-        async updateMenu({ commit, rootState }) {
+        async updateMenu({commit, rootState}) {
             const menu = await getMenu(rootState.user.storeId);
-
             commit('setMenu', menu)
+        },
+
+        async updateItemStockStatus({dispatch, rootState}, itemId, inStock) {
+            const {storeId} = rootState.user
+            await setItemStockStatus(storeId, itemId, inStock)
         }
     }
 }
