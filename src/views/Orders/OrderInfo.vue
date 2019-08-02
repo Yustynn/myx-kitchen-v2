@@ -81,5 +81,6 @@
 
     .special-requests {
         margin: 0;
+        font-size: 14px;
     }
 </style>

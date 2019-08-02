@@ -8,6 +8,18 @@ export default {
     mutations: {
         setMenu(state, menu) {
             Vue.set(state, 'menu', menu)
+        },
+
+        setItemStockStatus({ menu }, { itemId, inStock }) {
+            let item;
+
+            for (let { items } of menu) {
+                for (let _item of items) {
+                    if (_item.itemNum === itemId) item = _item
+                }
+            }
+
+            Vue.set(item, 'inStock', inStock)
         }
     },
     actions: {
@@ -16,9 +28,11 @@ export default {
             commit('setMenu', menu)
         },
 
-        async updateItemStockStatus({dispatch, rootState}, itemId, inStock) {
+        async updateItemStockStatus({commit, rootState}, { itemId, inStock }) {
             const {storeId} = rootState.user
+
             await setItemStockStatus(storeId, itemId, inStock)
+            commit('setItemStockStatus', { itemId, inStock })
         }
     }
 }

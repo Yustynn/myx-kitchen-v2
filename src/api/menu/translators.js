@@ -1,4 +1,4 @@
-export function translateFrom(raw) {
+export function translateFromGetMenu(raw) {
     return Object.keys(raw).map((category) => ({
         category,
         items: raw[category].map((item) => ({
@@ -7,5 +7,10 @@ export function translateFrom(raw) {
             inStock: item['in_stock']
         }))
     }))
+}
 
+export function translateToUpdateStock(inStock) {
+    return JSON.stringify({
+        'in_stock': inStock
+    })
 }

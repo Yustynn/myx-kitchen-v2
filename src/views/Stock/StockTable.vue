@@ -20,7 +20,14 @@
                         hide-headers
                 >
                     <template v-slot:items="props">
-                        <tr style="margin: 0 200px !important;" @click="rowOnClickHandler(props.item)">
+                        <tr
+                                style="margin: 0 200px !important;"
+                                @click="updateItemStockStatus({
+                                    itemId: props.item.itemNum,
+                                    inStock: !props.item.inStock
+                                })"
+                        >
+                            {{ props.item.inStock }}
                             <td class="test" :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.itemNum }}.</td>
                             <td :class="props.item.inStock ? '' : 'no-stock'">{{ props.item.name }}</td>
                             <td :class="props.item.inStock ? '' : 'no-stock'">${{ props.item.price }}</td>
@@ -41,6 +48,8 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
+
     export default {
         data: function() {
             return {
@@ -66,9 +75,7 @@
             }
         },
         methods: {
-          rowOnClickHandler(item) {
-              item.inStock = !item.inStock
-          },
+              ...mapActions(['updateItemStockStatus'])
         },
         props: {
             data: Array
