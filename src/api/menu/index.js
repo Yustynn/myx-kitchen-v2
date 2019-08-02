@@ -13,7 +13,6 @@ export async function getMenu(storeId) {
 export async function setItemStockStatus(storeId, itemId, inStock) {
     const url = `${API_MENU_BASE_URL}/${storeId}/${itemId}`
     const body = translateToUpdateStock(inStock)
-    console.log('body', itemId, inStock, body)
 
     return await fetch(url, {
         method: 'PUT',

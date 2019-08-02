@@ -2,6 +2,7 @@ import io from 'socket.io-client';
 
 import { JOIN_STORE, RECEIVE_ORDERS } from "@/api/socket";
 import routesConfig from '@/router/routesConfig'
+import { translateRawOrdersToReceiptGroups } from '@/api/socket/translators'
 
 const SOCKET_URL = 'http://10.12.254.221:11236/'
 
@@ -27,7 +28,11 @@ export default {
             const reconnect = () => {
                 dispatch('login', storeId)
             }
-            const processOrders = console.log // @TODO
+
+            const processOrders = (raw) => {
+                const orders = translateRawOrdersToReceiptGroups(raw)
+                commit('updateOrders', orders)
+            }
 
             dispatch('disconnectSocket')
 
