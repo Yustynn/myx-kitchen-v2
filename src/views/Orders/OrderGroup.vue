@@ -13,10 +13,11 @@
         </v-layout>
 
         <OrderInfo
-                class="order"
-                :class="{ pending }"
-                v-bind="order"
-                v-for="order in orders"
+            class="order"
+            :class="{ pending }"
+            v-bind="order"
+            v-for="(order, idx) in orders"
+            :key="idx"
         />
 
         <v-layout row justify-center v-if="pending">
@@ -36,18 +37,22 @@
         components: {
             OrderInfo
         },
+
         methods: {
             async acceptReceiptHandler() {
-                const { storeId } = this.$store.state.user
+                const {storeId} = this.$store.state.user
 
                 return acceptReceipt(storeId, this.receiptNum)
             },
+
             async rejectReceiptHandler() {
-                const { storeId } = this.$store.state.user
+                const {storeId} = this.$store.state.user
 
                 return rejectReceipt(storeId, this.receiptNum)
             },
         },
+
+
         props: {
             pending: {
                 type: Boolean,

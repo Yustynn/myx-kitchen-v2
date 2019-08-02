@@ -1,35 +1,66 @@
 <template>
-    <v-layout fill-width class="px-3 py-2">
-        <v-flex sm1 xs3>{{ itemNum }}.</v-flex>
-        <v-flex sm9 xs6 column>
-            <h3 class="pb-1">{{ name }}</h3>
-            <p
-                   class="modifications"
-                    v-for="(modification, idx) in modifications"
-                    :key="idx"
-            >
-                • {{ modification }}
+    <a @click.stop="handleNextState">
+        <v-layout :class="{ 'is-cancellable-processed': state.isCancellableProcessed }" fill-width class="px-3 py-2">
+            <v-flex sm1 xs3>{{ itemNum }}.</v-flex>
+            <v-flex sm9 xs6 column>
+                <h3 class="pb-1">{{ name }}</h3>
+                <p
+                        class="modifications"
+                        v-for="(modification, idx) in modifications"
+                        :key="idx"
+                >
+                    • {{ modification }}
 
-            </p>
-            <p
-                    class="modifications"
-                    v-if="!modifications || !modifications.length"
-            >
-                No special requests
-            </p>
-        </v-flex>
-        <v-flex sm2 xs3>
-            <p class="quantity">x{{ quantity }}</p>
-            <p v-if="showPrice">${{ price }}</p>
-        </v-flex>
-    </v-layout>
+                </p>
+                <p
+                        class="modifications"
+                        v-if="!modifications || !modifications.length"
+                >
+                    No special requests
+                </p>
+            </v-flex>
+            <v-flex sm2 xs3>
+                <p class="quantity">x{{ quantity }}</p>
+                <p v-if="showPrice">${{ price }}</p>
+                <p v-if="state.isCancellableProcessed">Tap to undo</p>
+            </v-flex>
+        </v-layout>
+    </a>
 </template>
 
 <script>
+    const CANCEL_DELAY = 1000 // ms
+
     export default {
         computed: {
             modifications() {
                 return [...this.compulsoryOptions, ...this.optionalOptions]
+            }
+        },
+
+        data() {
+            return {
+                state: {
+                    isCancellableProcessed: false,
+                    timeout: null,
+                }
+            }
+        },
+
+        methods: {
+            handleNextState() {
+                if (this.state.isCancellableProcessed) {
+                    clearTimeout(this.state.timeout)
+                    this.state.timeout = null
+                }
+                else {
+                    this.state.timeout = setTimeout(
+                        () => console.log('fake processed for real!'),
+                        CANCEL_DELAY
+                    )
+                }
+
+                this.$set(this.state, 'isCancellableProcessed', !this.state.isCancellableProcessed)
             }
         },
 
@@ -56,12 +87,12 @@
             },
             optionalOptions: {
                 type: Array,
-                default: []
+                default: () => []
             },
             compulsoryOptions: {
                 type: Array,
-                default: []
-            }
+                default: () => []
+            },
         },
     }
 </script>
@@ -84,5 +115,9 @@
     .modifications {
         margin: 0;
         font-size: 14px;
+    }
+
+    .is-cancellable-processed {
+        background-color: darkgrey;
     }
 </style>
