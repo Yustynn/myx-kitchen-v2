@@ -1,27 +1,46 @@
-export function translateRawOrdersToReceiptGroups(raw) {
-    function processOptions(raw) {
-        if (!raw) return []
+import { format } from 'date-fns'
 
-        const processed = []
+function processOptions(raw) {
+    if (!raw) return []
 
-        for (let { name, options } of raw) {
-            for (let option of options) {
-                processed.push(`${name}: ${option.name}`)
-            }
+    const processed = []
+
+    for (let { name, options } of raw) {
+        for (let option of options) {
+            processed.push(`${name}: ${option.name}`)
         }
-
-        return processed
     }
 
-    const receiptGroupsById = {}
-    for (let order of raw) {
-        const receiptNum = +order['receipt_id']
+    return processed
+}
 
-        if (!receiptGroupsById[receiptNum]) {
-            receiptGroupsById[receiptNum] = []
+function processTimestamp(timestamp) {
+    const date = new Date(timestamp)
+    return format(
+        date,
+        'h:mm A'
+    )
+}
+
+export function translateRawOrdersToReceiptGroups(raw) {
+    const receiptGroupsById = {}
+    const receiptIdToTimestamp = {}
+    const receiptIdIsPending = {}
+
+    for (let order of raw) {
+        const receiptId = +(order['receipt_id'])
+
+        if (!receiptGroupsById[receiptId]) {
+            receiptGroupsById[receiptId] = []
         }
 
-        receiptGroupsById[receiptNum].push({
+        const statusId = +order['status_id']
+
+        if (statusId === 0) receiptIdIsPending[receiptId] = true
+
+        receiptIdToTimestamp[receiptId] = processTimestamp(order['start_datetime'])
+
+        receiptGroupsById[receiptId].push({
             compulsoryOptions: processOptions(order['compulsory_options']),
             optionalOptions: processOptions(order['optional_options']),
             name: order['name'],
@@ -29,15 +48,20 @@ export function translateRawOrdersToReceiptGroups(raw) {
             statusId: +order['status_id'],
             itemNum: +order['item_id']
         })
+    }
 
+    for (let orders of Object.values(receiptGroupsById)) {
+        orders.sort((a, b) => a.itemNum - b.itemNum)
     }
 
     return Object.keys(receiptGroupsById)
         .sort()
-        .map((rid) => {
+        .map((receiptId) => {
             return {
-                receiptId: rid,
-                orders: receiptGroupsById[rid]
+                isPending: !!receiptIdIsPending[receiptId],
+                orders: receiptGroupsById[receiptId],
+                receiptId: +receiptId,
+                timestamp: receiptIdToTimestamp[receiptId],
             }
         })
 }

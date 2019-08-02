@@ -20,19 +20,33 @@
         />
 
         <v-layout row justify-center v-if="pending">
-            <v-btn outline color="secondary">Accept</v-btn>
-            <v-btn outline color="secondary">Decline</v-btn>
+            <v-btn outline color="secondary" @click="acceptReceiptHandler">Accept</v-btn>
+            <v-btn outline color="secondary" @click="rejectReceiptHandler">Decline</v-btn>
         </v-layout>
     </v-flex>
 
 </template>
 
 <script>
+    import { acceptReceipt, rejectReceipt } from '@/api/orders'
+
     import OrderInfo from './OrderInfo'
 
     export default {
         components: {
             OrderInfo
+        },
+        methods: {
+            async acceptReceiptHandler() {
+                const { storeId } = this.$store.state.user
+
+                return acceptReceipt(storeId, this.receiptNum)
+            },
+            async rejectReceiptHandler() {
+                const { storeId } = this.$store.state.user
+
+                return rejectReceipt(storeId, this.receiptNum)
+            },
         },
         props: {
             pending: {
@@ -41,32 +55,19 @@
             },
             orders: {
                 type: Array,
-                default: () => [
-                    {
-                        itemNum: 1,
-                        name: "Thing that's edible",
-                        quantity: 4,
-                        price: "7.50"
-                    },
-                    {
-                        itemNum: 5,
-                        name: "Edible that's thing",
-                        quantity: 12,
-                        price: "12.50"
-                    }
-                ]
+                default: () => []
             },
             receiptNum: {
                 type: Number,
-                default: 156
+                default: 9999
             },
             tableNum: {
                 type: Number,
-                default: 14
+                default: 999
             },
             timestamp: {
                 type: String,
-                default: '11:24 AM'
+                default: '99:99 AM'
             }
         }
     }

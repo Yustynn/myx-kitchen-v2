@@ -4,16 +4,16 @@
         <v-flex sm9 xs6 column>
             <h3 class="pb-1">{{ name }}</h3>
             <p
-                   class="special-requests"
-                    v-for="(specialRequest, idx) in specialRequests"
+                   class="modifications"
+                    v-for="(modification, idx) in modifications"
                     :key="idx"
             >
-                • {{ specialRequest }}
+                • {{ modification }}
 
             </p>
             <p
-                    class="special-requests"
-                    v-if="!specialRequests || !specialRequests.length"
+                    class="modifications"
+                    v-if="!modifications || !modifications.length"
             >
                 No special requests
             </p>
@@ -27,6 +27,12 @@
 
 <script>
     export default {
+        computed: {
+            modifications() {
+                return [...this.compulsoryOptions, ...this.optionalOptions]
+            }
+        },
+
         props: {
             itemNum: {
                 type: Number,
@@ -48,25 +54,21 @@
                 type: Boolean,
                 default: false
             },
-            specialRequests: {
+            optionalOptions: {
                 type: Array,
-                default: () => ['Fried Rice add-on', 'Chicken wings add-on']
+                default: []
+            },
+            compulsoryOptions: {
+                type: Array,
+                default: []
             }
         },
-        data: function() {
-            return {
-            }
-        }
     }
 </script>
 
 <style scoped>
     h3 {
         color: black;
-    }
-
-    .container {
-        padding: 100px;
     }
 
     .quantity {
@@ -79,7 +81,7 @@
         width: 30px;
     }
 
-    .special-requests {
+    .modifications {
         margin: 0;
         font-size: 14px;
     }

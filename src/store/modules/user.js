@@ -8,7 +8,7 @@ const SOCKET_URL = 'http://10.12.254.221:11236/'
 
 export default {
     state: {
-        store_id: ''
+        storeId: ''
     },
     mutations: {
         setSocket(state, socket) {
