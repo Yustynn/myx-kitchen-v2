@@ -4,6 +4,7 @@ import { JOIN_STORE, RECEIVE_ORDERS } from "@/api/socket";
 import routesConfig from '@/router/routesConfig'
 import { translateRawOrdersToReceiptGroups } from '@/api/socket/translators'
 import { SOCKET_URL } from '@/api/'
+import { setOrdersStatus, STATUS_COMPLETED, STATUS_PROCESSED } from "@/api/orders";
 
 export default {
     state: {
@@ -30,9 +31,24 @@ export default {
 
             const processOrders = (raw) => {
                 const orders = translateRawOrdersToReceiptGroups(raw)
+
+                const validOrders = orders.filter((r) => {
+                    return r.orders.every((o) => o.statusId !== STATUS_COMPLETED)
+                })
+
+                commit('updateOrders', validOrders)
+
+                console.log('valid', validOrders)
                 console.log('processed', orders)
                 console.log('raw', raw)
-                commit('updateOrders', orders)
+                const completed = validOrders.filter(({ orders }) => {
+                    return orders.every((o) => o.statusId === STATUS_PROCESSED)
+                })
+
+                console.log('completed', completed)
+
+                completed.forEach(({ orders }) => setOrdersStatus(storeId, orders, STATUS_COMPLETED))
+
             }
 
             dispatch('disconnectSocket')
