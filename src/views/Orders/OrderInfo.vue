@@ -22,7 +22,7 @@
             <v-flex sm2 xs3>
                 <p class="quantity">x{{ quantity }}</p>
                 <p v-if="showPrice">${{ price }}</p>
-                <p class="undo-text" v-if="state.isCancellableProcessed">Tap to undo</p>
+                <p class="undo-text" v-if="showUndoText">Tap to undo</p>
             </v-flex>
         </v-layout>
     </a>
@@ -51,6 +51,10 @@
 
             processedClass() {
                 return this.state.isCancellableProcessed || this.statusId === STATUS_PROCESSED
+            },
+
+            showUndoText() {
+                return this.state.isCancellableProcessed && this.statusId === STATUS_TO_BE_PROCESSED
             }
         },
 
@@ -65,7 +69,6 @@
 
         methods: {
             handleNextState() {
-                console.log(this.statusId)
                 switch (this.statusId) {
                     case STATUS_TO_BE_ACCEPTED:
                         break;
@@ -82,7 +85,6 @@
                             this.state.timeout = setTimeout(
                                 async () => {
                                     await setOrderStatus(this.storeId, this.id, STATUS_PROCESSED)
-                                    this.$set(this.state, 'isCancellableProcessed', false)
                                 },
                                 CANCEL_DELAY
                             )
