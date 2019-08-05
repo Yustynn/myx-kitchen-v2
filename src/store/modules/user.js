@@ -3,8 +3,7 @@ import io from 'socket.io-client';
 import { JOIN_STORE, RECEIVE_ORDERS } from "@/api/socket";
 import routesConfig from '@/router/routesConfig'
 import { translateRawOrdersToReceiptGroups } from '@/api/socket/translators'
-
-const SOCKET_URL = 'http://10.12.254.221:11236/'
+import { SOCKET_URL } from '@/api/'
 
 export default {
     state: {

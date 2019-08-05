@@ -1,1 +1,2 @@
-export const API_BASE_URL = 'http://10.12.254.221:11235'
+export const API_BASE_URL = 'https://www.myxbrewapi.com'
+export const SOCKET_URL = 'https://www.myxbrewapi.com'
