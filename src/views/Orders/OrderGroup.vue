@@ -1,8 +1,12 @@
 <template>
-    <v-flex class="container">
+    <v-flex class="container" @click="handleAcknowledgement()">
+        <div class="shield" v-if="isBlink" />
         <v-layout
                 class="header py-2 px-3"
-                :class="{ pending }"
+                :class="{
+                    pending,
+                    blink: isBlink
+                }"
                 row
                 justify-space-between
                 justify-content-center
@@ -11,7 +15,6 @@
             <span class="receipt-num">#{{ receiptNum }}</span>
             <span>{{ timestamp }}</span>
         </v-layout>
-
         <OrderInfo
             class="order"
             :class="{ pending }"
@@ -29,13 +32,33 @@
 </template>
 
 <script>
-    import { acceptReceipt, rejectReceipt } from '@/api/orders'
+    import { mapState } from 'vuex'
+
+    import {
+        STATUS_TO_BE_PROCESSED,
+        STATUS_UNACKNOWLEDGED,
+        acceptReceipt,
+        rejectReceipt,
+        setOrdersStatus
+    } from '@/api/orders'
 
     import OrderInfo from './OrderInfo'
 
     export default {
         components: {
             OrderInfo
+        },
+
+        computed: {
+            ...mapState({
+                storeId: ({ user }) => user.storeId
+            }),
+
+            isBlink() {
+                return this.orders.some(
+                    (o) => o.statusId === STATUS_UNACKNOWLEDGED
+                )
+            }
         },
 
         methods: {
@@ -50,6 +73,16 @@
 
                 return rejectReceipt(storeId, this.receiptNum)
             },
+
+            handleAcknowledgement() {
+                if (this.isBlink) {
+                    setOrdersStatus(
+                        this.storeId,
+                        this.orders,
+                        STATUS_TO_BE_PROCESSED
+                    )
+                }
+            }
         },
 
 
@@ -64,7 +97,6 @@
             },
             receiptNum: {
                 type: Number,
-                default: 9999
             },
             tableNum: {
                 type: Number,
@@ -79,12 +111,28 @@
 </script>
 
 <style scoped>
+    @keyframes blinker {
+        45% {
+            background-color: initial;
+        }
+        50% {
+            background-color: #1565C0;
+        }
+        95% {
+            background-color: #1565C0;
+        }
+    }
+
+    .blink.header {
+        animation: blinker 0.75s linear infinite;
+    }
 
     .container {
         background-color: white;
         border: 1px solid #A8A8A8;
         border-radius: 4px;
         padding: 0;
+        position: relative;
     }
 
     .header {
@@ -120,5 +168,12 @@
         color: #1565C0;
         font-size: 22px;
         font-weight: bold;
+    }
+
+    .shield {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
     }
 </style>

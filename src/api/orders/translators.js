@@ -6,6 +6,6 @@ export function generateAcceptanceBody(isAccept) {
 
 export function generateOrderStatusBody(status) {
     return JSON.stringify({
-        status
+        'status_id': status
     })
 }

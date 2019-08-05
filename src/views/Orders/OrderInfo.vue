@@ -1,6 +1,6 @@
 <template>
     <a @click.stop="handleNextState">
-        <v-layout :class="{ 'is-cancellable-processed': state.isCancellableProcessed }" fill-width class="px-3 py-2">
+        <v-layout :class="{ processed: processedClass }" fill-width class="px-3 py-2 container">
             <v-flex sm1 xs3>{{ itemNum }}.</v-flex>
             <v-flex sm9 xs6 column>
                 <h3 class="pb-1">{{ name }}</h3>
@@ -22,19 +22,35 @@
             <v-flex sm2 xs3>
                 <p class="quantity">x{{ quantity }}</p>
                 <p v-if="showPrice">${{ price }}</p>
-                <p v-if="state.isCancellableProcessed">Tap to undo</p>
+                <p class="undo-text" v-if="state.isCancellableProcessed">Tap to undo</p>
             </v-flex>
         </v-layout>
     </a>
 </template>
 
 <script>
-    const CANCEL_DELAY = 1000 // ms
+    import { mapState } from 'vuex'
+    import {
+        STATUS_TO_BE_ACCEPTED,
+        STATUS_TO_BE_PROCESSED,
+        STATUS_PROCESSED,
+        setOrderStatus
+    } from "@/api/orders";
+
+    const CANCEL_DELAY = 5000 // ms
 
     export default {
         computed: {
+            ...mapState({
+               storeId: ({ user }) => user.storeId
+            }),
+
             modifications() {
                 return [...this.compulsoryOptions, ...this.optionalOptions]
+            },
+
+            processedClass() {
+                return this.state.isCancellableProcessed || this.statusId === STATUS_PROCESSED
             }
         },
 
@@ -49,22 +65,40 @@
 
         methods: {
             handleNextState() {
-                if (this.state.isCancellableProcessed) {
-                    clearTimeout(this.state.timeout)
-                    this.state.timeout = null
-                }
-                else {
-                    this.state.timeout = setTimeout(
-                        () => console.log('fake processed for real!'),
-                        CANCEL_DELAY
-                    )
+                console.log(this.statusId)
+                switch (this.statusId) {
+                    case STATUS_TO_BE_ACCEPTED:
+                        break;
+
+                    case STATUS_TO_BE_PROCESSED:
+                        if (this.state.isCancellableProcessed) {
+                            clearTimeout(this.state.timeout)
+
+                            this.state.timeout = null
+                            this.$set(this.state, 'isCancellableProcessed', false)
+                        }
+                        else {
+                            this.$set(this.state, 'isCancellableProcessed', true)
+                            this.state.timeout = setTimeout(
+                                async () => {
+                                    await setOrderStatus(this.storeId, this.id, STATUS_PROCESSED)
+                                    this.$set(this.state, 'isCancellableProcessed', false)
+                                },
+                                CANCEL_DELAY
+                            )
+                        }
+
+                        break;
                 }
 
-                this.$set(this.state, 'isCancellableProcessed', !this.state.isCancellableProcessed)
+
             }
         },
 
         props: {
+            id: {
+                type: Number
+            },
             itemNum: {
                 type: Number,
                 default: 12
@@ -85,6 +119,9 @@
                 type: Boolean,
                 default: false
             },
+            statusId: {
+                type: Number,
+            },
             optionalOptions: {
                 type: Array,
                 default: () => []
@@ -102,12 +139,17 @@
         color: black;
     }
 
+    .container {
+        min-height: 100px;
+    }
+
     .quantity {
         border-radius: 50%;
         border: 1px solid #979797;
         font-weight: 700;
         height: 30px;
         line-height: 30px;
+        margin: 0;
         text-align: center;
         width: 30px;
     }
@@ -117,7 +159,12 @@
         font-size: 14px;
     }
 
-    .is-cancellable-processed {
-        background-color: darkgrey;
+    .processed {
+        background-color: #C8C8C8;
+    }
+
+    .undo-text {
+        font-size: 14px;
+        margin: 0;
     }
 </style>

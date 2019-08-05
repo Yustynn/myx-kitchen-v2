@@ -30,6 +30,8 @@ export default {
 
             const processOrders = (raw) => {
                 const orders = translateRawOrdersToReceiptGroups(raw)
+                console.log('processed', orders)
+                console.log('raw', raw)
                 commit('updateOrders', orders)
             }
 

@@ -44,6 +44,7 @@ export function translateRawOrdersToReceiptGroups(raw) {
             compulsoryOptions: processOptions(order['compulsory_options']),
             optionalOptions: processOptions(order['optional_options']),
             name: order['name'],
+            id: order['order_id'],
             quantity: 1, // @TODO check with zoos
             statusId: +order['status_id'],
             itemNum: +order['item_id']
