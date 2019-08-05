@@ -2,7 +2,7 @@
     <v-btn
             class="btn"
             @click="$emit('click')"
-            v-bind:color="color"
+            v-bind:color="black"
     >
         <slot>All praise Corinna</slot>
 

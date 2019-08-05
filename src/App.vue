@@ -1,17 +1,18 @@
 <template>
     <v-app>
+        <DustbinMenu />
         <v-layout column fill-height fill-width>
-            <DevMenu />
             <router-view />
         </v-layout>
     </v-app>
 </template>
 
 <script>
-    import { DevMenu } from '@/components'
+    import { DevMenu, DustbinMenu } from '@/components'
 
     export default {
         components: {
+            DustbinMenu,
             DevMenu
         },
         name: 'App'
