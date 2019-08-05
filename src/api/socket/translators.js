@@ -28,7 +28,7 @@ export function translateRawOrdersToReceiptGroups(raw) {
     const receiptIdIsPending = {}
 
     for (let order of raw) {
-        const receiptId = +(order['receipt_id'])
+        const receiptId = parseInt(order['receipt_id'])
 
         if (!receiptGroupsById[receiptId]) {
             receiptGroupsById[receiptId] = []
@@ -55,7 +55,7 @@ export function translateRawOrdersToReceiptGroups(raw) {
     }
 
     return Object.keys(receiptGroupsById)
-        .sort()
+        .sort((a, b) => a - b)
         .map((receiptId) => {
             return {
                 isPending: !!receiptIdIsPending[receiptId],
