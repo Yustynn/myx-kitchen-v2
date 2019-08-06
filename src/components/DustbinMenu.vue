@@ -1,7 +1,10 @@
 <template>
-    <v-layout full-width class="outer">
-        <v-container>
-            <h2>Drink Dispenser</h2>
+        <v-expansion-panel dark>
+            <v-expansion-panel-content class="outer">
+                <template v-slot:header>
+                    <h2>Drink Dispenser</h2>
+                </template>
+                <v-container>
             <v-flex justify-center class="btn-container">
                 <BtnAlt
                         class="btn"
@@ -14,7 +17,10 @@
 
             </v-flex>
         </v-container>
-    </v-layout>
+            </v-expansion-panel-content>
+        </v-expansion-panel>
+
+
 </template>
 
 <script>
@@ -42,7 +48,7 @@
     }
 
     .outer {
-        background-color: #1565C0;
+        background-color: #1565C0 !important;
     }
     
     .btn {
