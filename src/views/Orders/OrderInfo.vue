@@ -19,9 +19,15 @@
                     No special requests
                 </p>
             </v-flex>
-            <v-flex sm2 xs3>
-                <p class="quantity">x{{ quantity }}</p>
+            <v-flex class="quantity-container" sm2 xs3>
+                <p
+                        class="quantity"
+                        :class="{ rejected }"
+                >
+                    x{{ quantity }}
+                </p>
                 <p v-if="showPrice">${{ price }}</p>
+                <p class="decline-text" v-if="rejected">Decline</p>
                 <p class="undo-text" v-if="showUndoText">Tap to undo</p>
             </v-flex>
         </v-layout>
@@ -37,7 +43,7 @@
         setOrderStatus
     } from "@/api/orders";
 
-    const CANCEL_DELAY = 5000 // ms
+    const CANCEL_DELAY = 1500 // ms
 
     export default {
         computed: {
@@ -107,15 +113,18 @@
             },
             name: {
                 type: String,
-                default: 'Chicken Cutlet'
+                default: '(name missing)'
             },
             price: {
                 type: String,
-                default: '7.50'
+                default: '(price missing)'
             },
             quantity: {
                 type: Number,
-                default: 2
+                default: 999
+            },
+            rejected: {
+                type: Boolean
             },
             showPrice: {
                 type: Boolean,
@@ -145,15 +154,31 @@
         min-height: 100px;
     }
 
+    .decline-text {
+        color: #D4615C;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 10px;
+        text-transform: uppercase;
+    }
+
     .quantity {
         border-radius: 50%;
-        border: 1px solid #979797;
+        border: 2px solid #A2D48F;
         font-weight: 700;
         height: 30px;
         line-height: 30px;
-        margin: 0;
+        margin: 0 auto;
         text-align: center;
         width: 30px;
+    }
+
+    .quantity-container {
+        min-width: 65px;
+    }
+
+    .quantity.rejected {
+        border-color: #D4615C;
     }
 
     .modifications {

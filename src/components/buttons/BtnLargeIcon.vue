@@ -61,7 +61,7 @@
         border: 3px solid #1565C0;
         cursor: pointer;
         height: 280px;
-        opacity: 0.4;
+        opacity: 1;
         width: 240px;
 
         -webkit-user-select: none;

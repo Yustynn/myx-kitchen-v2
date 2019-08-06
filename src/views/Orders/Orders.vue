@@ -1,12 +1,12 @@
 <template>
     <v-layout column fill-height>
         <v-layout row fill-height fill-width>
-            <v-flex md8 class="confirmed-ordes">
+            <v-flex sm8 class="confirmed-ordes">
                 <v-container>
                 <Header text="Orders" />
                     <v-layout row>
                         <v-flex
-                                md6
+                                sm6
                                 class="order-group-container"
                         >
                             <OrderGroup
@@ -19,7 +19,7 @@
                             />
                         </v-flex>
                         <v-flex
-                                md6
+                                sm6
                                 class="order-group-container"
                         >
                             <OrderGroup
@@ -34,7 +34,7 @@
                     </v-layout>
                 </v-container>
             </v-flex>
-            <v-flex class="unconfirmed-orders" md4>
+            <v-flex class="unconfirmed-orders" sm4>
                 <v-container>
                     <h1 class="text-xs-center">Pending</h1>
                         <v-flex

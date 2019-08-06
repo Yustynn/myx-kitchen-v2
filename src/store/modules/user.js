@@ -38,14 +38,9 @@ export default {
 
                 commit('updateOrders', validOrders)
 
-                console.log('valid', validOrders)
-                console.log('processed', orders)
-                console.log('raw', raw)
                 const completed = validOrders.filter(({ orders }) => {
                     return orders.every((o) => o.statusId === STATUS_PROCESSED)
                 })
-
-                console.log('completed', completed)
 
                 completed.forEach(({ orders }) => setOrdersStatus(storeId, orders, STATUS_COMPLETED))
 

@@ -2,6 +2,7 @@ import { API_BASE_URL } from '@/api'
 import { generateAcceptanceBody, generateOrderStatusBody } from "./translators";
 import { putJson } from "@/api/helpers";
 
+export const STATUS_REJECTED = -1
 export const STATUS_TO_BE_ACCEPTED = 0
 export const STATUS_UNACKNOWLEDGED = 1
 export const STATUS_TO_BE_PROCESSED = 2
