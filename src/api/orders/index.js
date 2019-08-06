@@ -8,6 +8,7 @@ export const STATUS_UNACKNOWLEDGED = 1
 export const STATUS_TO_BE_PROCESSED = 2
 export const STATUS_PROCESSED = 3
 export const STATUS_COMPLETED = 4
+export const STATUS_COLLECTED = 5
 
 const ORDER_API_URL = `${API_BASE_URL}/order`
 const RECEIPT_API_URL = `${API_BASE_URL}/receipt`
